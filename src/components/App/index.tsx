@@ -35,9 +35,9 @@ function App() {
       const { lat, lon } = cityData;
       const { data : { daily } } = await axios.get(process.env.REACT_APP_WEATHER_URL || "", { params: { lat, lon, exclude: "current,hourly,minutely,alerts", units: "metric", appid: process.env.REACT_APP_API_TOKEN } });
 
-      setWeather(daily.slice(0, 4).map((data: any) => ({
-        date: new Date(data.dt * 1000),
-        temperature: data.temp.day,
+      setWeather(daily.slice(0, 5).map((data: any) => ({
+        date: new Date(data.dt * 1000).toLocaleString('en-us', {weekday:'short'}),
+        temperature: Math.round(data.temp.day),
         condition: data.weather[0].main,
         icon: data.weather[0].icon
       })));
@@ -49,7 +49,7 @@ function App() {
     <div className="App">
       <div className="content">
         <CityPicker city={city} cities={CITIES} setCity={setCity}/>
-        <Forecast weather={weather}/>
+        {weather.length > 0 && <Forecast weather={weather}/> }
       </div>
     </div>
   );
