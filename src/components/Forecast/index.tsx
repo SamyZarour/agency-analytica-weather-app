@@ -1,6 +1,6 @@
 import React from "react";
 import { Weather } from "../../types";
-import "./style.css";
+import "./style.scss";
 
 function Forecast(props: { weather: Weather[] }) {
   return (

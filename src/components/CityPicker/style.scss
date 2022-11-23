@@ -1,0 +1,26 @@
+.CityPicker {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .Day {
+        padding: 25px;
+        font-size: 2em;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        font-weight: 300;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .active {
+        font-weight: 600;
+        color: #5fb0e8;
+
+        &:hover {
+            cursor: default;
+        }
+    }
+}

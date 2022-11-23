@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import DayPicker from "../DayPicker";
+import { v4 as uuidv4 } from "uuid";
+import CityPicker from "../CityPicker";
 import Forecast from "../Forecast";
 import { Weather, City } from "../../types";
-import "./style.css";
+import "./style.scss";
 
 const CITIES = [
   {
+    id: uuidv4(),
     name: "Ottawa",
     countryCode: "CA"
   },
   {
+    id: uuidv4(),
     name: "Moscow",
     countryCode: "RU"
   },
   {
+    id: uuidv4(),
     name: "Tokyo",
     countryCode: "JP"
   }
@@ -43,8 +47,10 @@ function App() {
 
   return (
     <div className="App">
-      <DayPicker city={city} cities={CITIES} setCity={setCity}/>
-      <Forecast weather={weather}/>
+      <div className="content">
+        <CityPicker city={city} cities={CITIES} setCity={setCity}/>
+        <Forecast weather={weather}/>
+      </div>
     </div>
   );
 }

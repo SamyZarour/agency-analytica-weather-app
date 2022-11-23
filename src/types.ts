@@ -1,4 +1,5 @@
 export type City = {
+  id: String,
   name: String,
   countryCode: String
 }
