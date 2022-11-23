@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import DayPicker from "./DayPicker";
-import Forecast from "./Forecast";
-import { Weather, City } from './types';
-import './App.css';
+import axios from "axios";
+import DayPicker from "../DayPicker";
+import Forecast from "../Forecast";
+import { Weather, City } from "../../types";
+import "./style.css";
 
 const CITIES = [
   {
-    name: 'Montreal',
-    countryCode: 'CA'
+    name: "Ottawa",
+    countryCode: "CA"
   },
   {
-    name: 'Moscow',
-    countryCode: 'RU'
+    name: "Moscow",
+    countryCode: "RU"
   },
   {
-    name: 'Tokyo',
-    countryCode: 'JP'
+    name: "Tokyo",
+    countryCode: "JP"
   }
 ];
 
@@ -26,10 +26,10 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data : [ cityData ] } = await axios.get(process.env.REACT_APP_LOCATION_URL || '', { params: { q: `${city.name},${city.countryCode}`, limit: 1, appid: process.env.REACT_APP_API_TOKEN } });
+      const { data : [ cityData ] } = await axios.get(process.env.REACT_APP_LOCATION_URL || "", { params: { q: `${city.name},${city.countryCode}`, limit: 1, appid: process.env.REACT_APP_API_TOKEN } });
 
       const { lat, lon } = cityData;
-      const { data : { daily } } = await axios.get(process.env.REACT_APP_WEATHER_URL || '', { params: { lat, lon, exclude: 'current,hourly,minutely,alerts', units: 'metric', appid: process.env.REACT_APP_API_TOKEN } });
+      const { data : { daily } } = await axios.get(process.env.REACT_APP_WEATHER_URL || "", { params: { lat, lon, exclude: "current,hourly,minutely,alerts", units: "metric", appid: process.env.REACT_APP_API_TOKEN } });
 
       setWeather(daily.slice(0, 5).map((data: any) => ({
         date: new Date(data.dt * 1000),

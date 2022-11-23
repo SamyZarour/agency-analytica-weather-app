@@ -1,7 +1,7 @@
 import React from "react";
-import { v4 as uuidv4 } from 'uuid';
-import { City } from './types';
-import './App.css';
+import { v4 as uuidv4 } from "uuid";
+import { City } from "../../types";
+import "./style.css";
 
 function DayPicker(props: { city: City, cities: City[], setCity: (c: City) => void }) {
   const { cities } = props;
