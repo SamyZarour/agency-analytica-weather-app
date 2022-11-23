@@ -35,7 +35,7 @@ function App() {
       const { lat, lon } = cityData;
       const { data : { daily } } = await axios.get(process.env.REACT_APP_WEATHER_URL || "", { params: { lat, lon, exclude: "current,hourly,minutely,alerts", units: "metric", appid: process.env.REACT_APP_API_TOKEN } });
 
-      setWeather(daily.slice(0, 5).map((data: any) => ({
+      setWeather(daily.slice(0, 4).map((data: any) => ({
         date: new Date(data.dt * 1000),
         temperature: data.temp.day,
         condition: data.weather[0].main,
